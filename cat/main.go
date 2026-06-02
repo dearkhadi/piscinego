@@ -21,7 +21,7 @@ func main() {
 		return
 	}
 
-	hasError := false
+	printed := false
 
 	for _, name := range args {
 		file, err := os.Open(name)
@@ -29,15 +29,15 @@ func main() {
 			printStr("ERROR: ")
 			printStr(err.Error())
 			printStr("\n")
-			hasError = true
-			continue
+
+			if !printed {
+				os.Exit(1)
+			}
+			return
 		}
 
 		io.Copy(os.Stdout, file)
 		file.Close()
-	}
-
-	if hasError {
-		os.Exit(1)
+		printed = true
 	}
 }
