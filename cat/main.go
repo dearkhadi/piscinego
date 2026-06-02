@@ -17,27 +17,20 @@ func main() {
 	args := os.Args[1:]
 
 	if len(args) == 0 {
-		io.Copy(os.Stdout, os.Stdin)
+		_, _ = io.Copy(os.Stdout, os.Stdin)
 		return
 	}
 
-	printed := false
-
-	for _, name := range args {
-		file, err := os.Open(name)
+	for _, fileName := range args {
+		file, err := os.Open(fileName)
 		if err != nil {
 			printStr("ERROR: ")
 			printStr(err.Error())
 			printStr("\n")
-
-			if !printed {
-				os.Exit(1)
-			}
-			return
+			os.Exit(1)
 		}
 
-		io.Copy(os.Stdout, file)
+		_, _ = io.Copy(os.Stdout, file)
 		file.Close()
-		printed = true
 	}
 }
