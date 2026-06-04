@@ -1,11 +1,8 @@
 package main
 
-import (
-	"fmt"
-	"piscine"
-)
+import "piscine"
 
 func main() {
-	test := []string{"Hello", "how", "are", "you?"}
-	fmt.Println(piscine.ConcatParams(test))
+	a := []int{1, 2, 3, 4, 5, 6}
+	piscine.ForEach(piscine.PrintNbr, a)
 }
