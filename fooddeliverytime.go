@@ -17,9 +17,11 @@ func FoodDeliveryTime(order string) int {
 	for _, food := range myCatalogFoodTime {
 		if order == food.nameFood {
 			answer = food.preptime
-		} else {
-			return 404
 		}
+	}
+
+	if answer == 0 {
+		answer = 404
 	}
 
 	return answer
