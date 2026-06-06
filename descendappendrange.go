@@ -1,7 +1,7 @@
 package piscine
 
 func DescendAppendRange(max, min int) []int {
-	var answer []int
+	answer := []int{}
 
 	if min >= max {
 		return answer
