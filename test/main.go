@@ -6,9 +6,6 @@ import (
 )
 
 func main() {
-	fmt.Println(piscine.FoodDeliveryTime("burger"))
-	fmt.Println(piscine.FoodDeliveryTime("chips"))
-	fmt.Println(piscine.FoodDeliveryTime("nuggets"))
-	fmt.Println(piscine.FoodDeliveryTime("pizza"))
-	fmt.Println(piscine.FoodDeliveryTime("burger") + piscine.FoodDeliveryTime("chips") + piscine.FoodDeliveryTime("nuggets"))
+	steps := piscine.CollatzCountdown(12)
+	fmt.Println(steps)
 }
