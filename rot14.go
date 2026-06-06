@@ -1,3 +1,5 @@
+package piscine
+
 func Rot14(s string) string {
 	myArr := []rune(s)
 
