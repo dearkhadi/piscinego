@@ -14,9 +14,7 @@ func ShoppingSummaryCounter(str string) map[string]int {
 		}
 	}
 
-	if word != "" {
-		myStrArr = append(myStrArr, word)
-	}
+	myStrArr = append(myStrArr, word)
 
 	for _, word := range myStrArr {
 		answer[word] = answer[word] + 1
