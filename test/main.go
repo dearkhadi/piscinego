@@ -6,8 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Print(piscine.JumpOver("1010101010"))
-	fmt.Print(piscine.JumpOver(""))
-	fmt.Print(piscine.JumpOver("t w e l v e"))
-	fmt.Print(piscine.JumpOver("12"))
+	fmt.Println(piscine.StringToIntSlice("A quick brown fox jumps over the lazy dog"))
+	fmt.Println(piscine.StringToIntSlice("Converted this string into an int"))
+	fmt.Println(piscine.StringToIntSlice("hello THERE"))
 }
