@@ -6,12 +6,17 @@ func Unmatch(a []int) int {
 
 	for i := 0; i < lenArr; i++ {
 		checkNum := a[i]
+		counter := 0
 
 		for _, num := range a {
-			if !(checkNum == num) {
-				myAnswer = checkNum
-				break
+			if checkNum == num {
+				counter++
 			}
+		}
+
+		if counter%2 != 0 {
+			myAnswer = checkNum
+			break
 		}
 	}
 
