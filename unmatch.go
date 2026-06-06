@@ -8,9 +8,7 @@ func Unmatch(a []int) int {
 		checkNum := a[i]
 
 		for _, num := range a {
-			if checkNum == num {
-
-			} else {
+			if !(checkNum == num) {
 				myAnswer = checkNum
 				break
 			}
