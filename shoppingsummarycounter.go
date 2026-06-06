@@ -22,7 +22,6 @@ func ShoppingSummaryCounter(str string) map[string]int {
 
 	for _, word := range myStrArr {
 		answer[word] = answer[word] + 1
-
 	}
 
 	return answer
