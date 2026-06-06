@@ -9,10 +9,8 @@ func ShoppingSummaryCounter(str string) map[string]int {
 		if rune != ' ' {
 			word = word + string(rune)
 		} else {
-			if word != "" {
-				myStrArr = append(myStrArr, word)
-				word = ""
-			}
+			myStrArr = append(myStrArr, word)
+			word = ""
 		}
 	}
 
