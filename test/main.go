@@ -1,25 +1,8 @@
 package main
 
-import (
-	"fmt"
-	"piscine"
-)
-
-const N = 6
+import "piscine"
 
 func main() {
-	a := make([]string, N)
-	a[0] = "a"
-	a[1] = "b"
-	a[2] = "c"
-
-	for _, v := range a {
-		fmt.Println(v)
-	}
-
-	fmt.Println("Size after compacting:", piscine.Compact(&a))
-
-	for _, v := range a {
-		fmt.Println(v)
-	}
+	deck := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}
+	piscine.DealAPackOfCards(deck)
 }
