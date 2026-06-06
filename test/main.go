@@ -6,6 +6,8 @@ import (
 )
 
 func main() {
-	middle := piscine.Abort(2, 3, 8, 5, 7)
-	fmt.Println(middle)
+	summary := "Burger Water Carrot Coffee Water Water Chips Carrot Carrot Burger Carrot Water"
+	for index, element := range piscine.ShoppingSummaryCounter(summary) {
+		fmt.Println(index, "=>", element)
+	}
 }
