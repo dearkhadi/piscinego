@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	fmt.Println(piscine.DescendAppendRange(10, 5))
-	fmt.Println(piscine.DescendAppendRange(0, 1))
+	slice := []string{"Pineapple", "Honey", "Mushroom", "Tea", "Pepper", "Milk"}
+	fmt.Println(piscine.ShoppingListSort(slice))
 }
