@@ -1,8 +1,13 @@
 package main
 
-import "piscine"
+import (
+	"fmt"
+	"piscine"
+)
 
 func main() {
-	deck := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}
-	piscine.DealAPackOfCards(deck)
+	fmt.Print(piscine.JumpOver("1010101010"))
+	fmt.Print(piscine.JumpOver(""))
+	fmt.Print(piscine.JumpOver("t w e l v e"))
+	fmt.Print(piscine.JumpOver("12"))
 }
