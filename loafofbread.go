@@ -1,6 +1,11 @@
 package piscine
 
 func LoafOfBread(str string) string {
+
+	if str == "" {
+		return "Invalid Output\n"
+	}
+
 	if len(str) < 5 {
 		return "Invalid Output\n"
 	}
