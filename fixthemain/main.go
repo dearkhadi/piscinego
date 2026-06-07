@@ -4,13 +4,11 @@ import (
 	"github.com/01-edu/z01"
 )
 
-// Объявляем константы для состояний
 const (
 	OPEN  = true
 	CLOSE = false
 )
 
-// Объявляем структуру Door
 type Door struct {
 	state bool
 }
@@ -19,7 +17,7 @@ func PrintStr(s string) {
 	for _, r := range s {
 		z01.PrintRune(r)
 	}
-	z01.PrintRune('\n') // Добавляем перенос строки для читаемости
+	z01.PrintRune('\n')
 }
 
 func OpenDoor(ptrDoor *Door) {
