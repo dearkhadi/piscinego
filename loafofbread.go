@@ -1,34 +1,38 @@
 package piscine
 
 func LoafOfBread(str string) string {
-	runes := []rune(str)
-	if len(runes) < 5 {
+	var res []rune
+	charCount := 0
+	for _, r := range str {
+		if r != ' ' {
+			charCount++
+		}
+	}
+
+	if charCount < 5 {
 		return "Invalid Output\n"
 	}
 
-	var res string
-	i := 0
-	firstBlock := true
-
-	for i < len(runes) {
-		if !firstBlock {
-			res += " "
+	count := 0
+	for i := 0; i < len(str); i++ {
+		if str[i] != ' ' {
+			res = append(res, rune(str[i]))
+			count++
 		}
 
-		count := 0
-		for count < 5 && i < len(runes) {
-			if runes[i] != ' ' {
-				res += string(runes[i])
-				count++
+		if count == 5 {
+			count = 0
+			// Пропускаем 1 символ
+			if i+1 < len(str) {
+				i++
 			}
-			i++
-		}
-
-		firstBlock = false
-
-		if i < len(runes) {
-			i++
+			// Добавляем пробел только если впереди еще остались символы
+			if i+1 < len(str) {
+				res = append(res, ' ')
+			}
 		}
 	}
-	return res + "\n"
+	res = append(res, '\n')
+
+	return string(res)
 }
