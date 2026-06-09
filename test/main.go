@@ -6,9 +6,15 @@ import (
 )
 
 func main() {
-	fmt.Println(piscine.AtoiBase("125", "0123456789"))
-	fmt.Println(piscine.AtoiBase("1111101", "01"))
-	fmt.Println(piscine.AtoiBase("7D", "0123456789ABCDEF"))
-	fmt.Println(piscine.AtoiBase("uoi", "choumi"))
-	fmt.Println(piscine.AtoiBase("bbbbbab", "-ab"))
+
+	link := &piscine.List{}
+
+	piscine.ListPushBack(link, "Hello")
+	piscine.ListPushBack(link, "man")
+	piscine.ListPushBack(link, "how are you")
+
+	for link.Head != nil {
+		fmt.Println(link.Head.Data)
+		link.Head = link.Head.Next
+	}
 }
