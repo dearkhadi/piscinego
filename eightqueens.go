@@ -1,46 +1,39 @@
 package piscine
 
-import "fmt"
+import "github.com/01-edu/z01"
 
 func EightQueens() {
 	var board [8]int
-	solve(0, &board)
-}
-
-func solve(col int, board *[8]int) {
-	if col == 8 {
-		for i := 0; i < 8; i++ {
-			fmt.Print(board[i])
+	var solve func(int)
+	solve = func(col int) {
+		if col == 8 {
+			for i := 0; i < 8; i++ {
+				z01.PrintRune(rune(board[i] + '0'))
+			}
+			z01.PrintRune('\n')
+			return
 		}
-		fmt.Println()
-		return
-	}
-
-	for row := 1; row <= 8; row++ {
-		if isSafe(col, row, board) {
-			board[col] = row
-			solve(col+1, board)
-		}
-	}
-}
-
-func isSafe(col, row int, board *[8]int) bool {
-	for i := 0; i < col; i++ {
-		prevRow := board[i]
-		if prevRow == row {
-			return false
-		}
-		rowDiff := prevRow - row
-		if rowDiff < 0 {
-			rowDiff = -rowDiff
-		}
-		colDiff := i - col
-		if colDiff < 0 {
-			colDiff = -colDiff
-		}
-		if rowDiff == colDiff {
-			return false
+		for row := 1; row <= 8; row++ {
+			safe := true
+			for i := 0; i < col; i++ {
+				rowDiff := board[i] - row
+				if rowDiff < 0 {
+					rowDiff = -rowDiff
+				}
+				colDiff := i - col
+				if colDiff < 0 {
+					colDiff = -colDiff
+				}
+				if board[i] == row || rowDiff == colDiff {
+					safe = false
+					break
+				}
+			}
+			if safe {
+				board[col] = row
+				solve(col + 1)
+			}
 		}
 	}
-	return true
+	solve(0)
 }
