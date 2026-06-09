@@ -1,12 +1,20 @@
 package main
 
 import (
-	"fmt"
 	"piscine"
+
+	"github.com/01-edu/z01"
 )
 
 func main() {
-	fmt.Print(piscine.LoafOfBread("deliciousbread"))
-	fmt.Print(piscine.LoafOfBread("This is a loaf of bread"))
-	fmt.Print(piscine.LoafOfBread(""))
+	piscine.PrintNbrBase(125, "0123456789")
+	z01.PrintRune('\n')
+	piscine.PrintNbrBase(-125, "01")
+	z01.PrintRune('\n')
+	piscine.PrintNbrBase(125, "0123456789ABCDEF")
+	z01.PrintRune('\n')
+	piscine.PrintNbrBase(-125, "choumi")
+	z01.PrintRune('\n')
+	piscine.PrintNbrBase(125, "aa")
+	z01.PrintRune('\n')
 }
