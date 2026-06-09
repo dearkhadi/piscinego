@@ -23,37 +23,36 @@ func PrintNbrBase(nbr int, base string) {
 		}
 	}
 
-	// Использование int64, чтобы избежать переполнения при -MinInt
-	n := int64(nbr)
-
-	// 2. Обработка знака
-	if n < 0 {
-		z01.PrintRune('-')
-		n = -n
-	}
-
-	// 3. Перевод системы счисления
-	if n == 0 {
+	// 2. Обработка нуля
+	if nbr == 0 {
 		z01.PrintRune(rune(base[0]))
 		return
 	}
 
-	var result []rune
-	blen := int64(baseLen)
-
-	for n > 0 {
-		remainder := n % blen
-		result = append(result, rune(base[remainder]))
-		n /= blen
+	// 3. Вывод знака для отрицательных чисел
+	if nbr < 0 {
+		z01.PrintRune('-')
 	}
 
-	// 4. Вывод результата в обратном порядке
+	var result []rune
+
+	// 4. Разложение числа (работает одинаково хорошо и для положительных, и для MinInt)
+	for nbr != 0 {
+		remainder := nbr % baseLen
+		// Если остаток отрицательный (для отрицательных nbr), делаем его положительным
+		if remainder < 0 {
+			remainder = -remainder
+		}
+		result = append(result, rune(base[remainder]))
+		nbr /= baseLen
+	}
+
+	// 5. Вывод слайса в обратном порядке
 	for i := len(result) - 1; i >= 0; i-- {
 		z01.PrintRune(result[i])
 	}
 }
 
-// Вспомогательная функция для вывода NV
 func printStr(s string) {
 	for _, r := range s {
 		z01.PrintRune(r)
