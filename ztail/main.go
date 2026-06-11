@@ -23,15 +23,9 @@ func main() {
 	files := os.Args[3:]
 	multipleFiles := len(files) > 1
 	hasError := false
+	printedAnyBefore := false
 
-	for i, filename := range files {
-		if multipleFiles {
-			if i > 0 {
-				fmt.Println()
-			}
-			fmt.Printf("==> %s <==\n", filename)
-		}
-
+	for _, filename := range files {
 		file, err := os.Open(filename)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
@@ -61,6 +55,14 @@ func main() {
 			fmt.Fprintln(os.Stderr, err)
 			hasError = true
 			continue
+		}
+
+		if multipleFiles {
+			if printedAnyBefore {
+				fmt.Println()
+			}
+			fmt.Printf("==> %s <==\n", filename)
+			printedAnyBefore = true
 		}
 
 		fmt.Print(string(buffer))
