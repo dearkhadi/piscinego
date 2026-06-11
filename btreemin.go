@@ -6,8 +6,8 @@ func BTreeMin(root *TreeNode) *TreeNode {
 	}
 
 	current := root
-	for current.Right != nil {
-		current = current.Right
+	for current.Left != nil {
+		current = current.Left
 	}
 
 	return current
