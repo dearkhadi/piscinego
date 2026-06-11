@@ -5,74 +5,48 @@ import (
 	"os"
 )
 
+func Atoi(s string) int {
+	n := 0
+
+	for _, r := range s {
+		n = n*10 + int(r-'0')
+	}
+
+	return n
+}
+
 func main() {
-	if len(os.Args) < 4 || os.Args[1] != "-c" {
-		fmt.Fprintln(os.Stderr, "Usage: go run . -c <bytes> <file1> [file2 ...]")
-		os.Exit(1)
+	if len(os.Args) < 4 {
+		return
 	}
 
-	var bytesToRead int64
-	for _, ch := range os.Args[2] {
-		if ch < '0' || ch > '9' {
-			fmt.Fprintln(os.Stderr, "invalid number of bytes")
-			os.Exit(1)
-		}
-		bytesToRead = bytesToRead*10 + int64(ch-'0')
-	}
-
+	count := Atoi(os.Args[2])
 	files := os.Args[3:]
-	multipleFiles := len(files) > 1
+
 	hasError := false
 
-	for i, filename := range files {
-		file, err := os.Open(filename)
+	for i, file := range files {
+		data, err := os.ReadFile(file)
+
 		if err != nil {
-			if multipleFiles && i > 0 {
-				fmt.Println()
-			}
-			fmt.Fprintln(os.Stderr, err)
+			fmt.Printf("%v\n", err)
 			hasError = true
 			continue
 		}
 
-		stat, err := file.Stat()
-		if err != nil {
-			if multipleFiles && i > 0 {
-				fmt.Println()
-			}
-			fmt.Fprintln(os.Stderr, err)
-			file.Close()
-			hasError = true
-			continue
-		}
-
-		fileSize := stat.Size()
-		offset := fileSize - bytesToRead
-		if offset < 0 {
-			offset = 0
-		}
-
-		buffer := make([]byte, fileSize-offset)
-		_, err = file.ReadAt(buffer, offset)
-		file.Close()
-
-		if err != nil && err.Error() != "EOF" {
-			if multipleFiles && i > 0 {
-				fmt.Println()
-			}
-			fmt.Fprintln(os.Stderr, err)
-			hasError = true
-			continue
-		}
-
-		if multipleFiles {
+		if len(files) > 1 {
 			if i > 0 {
-				fmt.Println()
+				fmt.Printf("\n")
 			}
-			fmt.Printf("==> %s <==\n", filename)
+			fmt.Printf("==> %s <==\n", file)
 		}
 
-		fmt.Print(string(buffer))
+		start := 0
+		if count < len(data) {
+			start = len(data) - count
+		}
+
+		fmt.Printf("%s", data[start:])
 	}
 
 	if hasError {
